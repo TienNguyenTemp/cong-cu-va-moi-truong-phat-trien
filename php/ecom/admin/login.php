@@ -4,17 +4,19 @@ require('functions.inc.php');
 $msg='';
 //login
 if(isset($_POST['submit'])){
+   //kiểm tra xem username và password có đúng với username-password trong csdl hay không
 	$username=get_safe_value($con,$_POST['username']);
 	$password=get_safe_value($con,$_POST['password']);
 	$sql="select * from admin_users where username='$username' and password='$password'";//câu truy vấn login nhận giá trị user,pass
 	$res=mysqli_query($con,$sql);//thực hiện câu truy vấn đến csdl
 	$count=mysqli_num_rows($res);//trả về số hàng thi thực thi xong câu truy vấn
-	if($count>0){//nếu kết quả trả về >0
+	if($count>0){//nếu kết quả trả về >0, đăng nhập thành công
 		$_SESSION['ADMIN_LOGIN']='yes';
 		$_SESSION['ADMIN_USERNAME']=$username;
 		header('location:categories.php');
 		die();
 	}else{
+      //sai thông tin mời nhập lại
 		$msg="Please enter correct login details";	
 	}
 	
