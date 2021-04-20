@@ -16,7 +16,7 @@ if(isset($_POST['submit'])){
 		header('location:categories.php');
 		die();
 	}else{
-      //sai thông tin mời nhập lại
+      //sai thông tin mời nhập lại.
 		$msg="Please enter correct login details";	
 	}
 	
